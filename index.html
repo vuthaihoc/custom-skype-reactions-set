@@ -7,15 +7,15 @@
   <link href="https://unpkg.com/tailwindcss@1.2.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body>
-<div class="container m-auto">
+<div class="container m-auto" x-data="{emoticons_list:emoticons_list}">
   <div class="p-10">
     <h1 class="font-sans font-thin mb-4 text-xl font-bold">Custom Reaction emoticons list</h1>
     <p class="text-grey mb-3">Command generator : make a skype command to change your reaction set
       in the message reaction picker</p>
 
-    <h2 class="font-sans font-bold leading-normal mb-4">
+    <h2 class="font-sans font-bold leading-normal my-4">
       Step 1: Select your favourite emoticons</h2>
-    <div class="flex"  x-data="{emoticons_list:emoticons_list}">
+    <div class="flex">
       <div class="w-1/2 p-2">
         <input class="border my-2 w-full" placeholder="Search">
         <div class="border h-64 overflow-y-scroll">
@@ -39,9 +39,12 @@
         </div>
       </div>
     </div>
-    <h2 class="font-sans font-bold leading-normal mb-4">
+    <h2 class="font-sans font-bold leading-normal my-4">
       Step 2: Copy below command</h2>
-    <h2 class="font-sans font-bold leading-normal mb-4">
+    <pre x-text="'/addreactions ' + joinObj(emoticons_list, 'name')" class="p-3 overflow-x-scroll border">
+      /addreactions
+    </pre>
+    <h2 class="font-sans font-bold leading-normal my-4">
       Step 3: Paste above comamd to your skype message input and click send button/enter</h2>
 
 
@@ -56,6 +59,19 @@
 </div>
 <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
 <script>
+
+  function joinObj(a, attr){
+    var out = [];
+
+    for (var i = 0; i < a.length; i++){
+      if (a[i]['selected']) {
+        out.push(a[i][attr]);
+      }
+    }
+
+    return out.join(" ");
+  }
+
   var emoticons_list = [
     {
         "name" : 'smile',
