@@ -15,12 +15,12 @@
 
     <h2 class="font-sans font-bold leading-normal mb-4">
       Step 1: Select your favourite emoticons</h2>
-    <div class="flex">
+    <div class="flex"  x-data="{emoticons_list:emoticons_list}">
       <div class="w-1/2 p-2">
         <input class="border my-2 w-full" placeholder="Search">
-        <div class="border h-64 overflow-y-scroll" x-data="{emoticons_list:emoticons_list}">
+        <div class="border h-64 overflow-y-scroll">
           <template x-for="emoticon in emoticons_list" :key="emoticon.name">
-            <div class="p-2 border-b">
+            <div class="p-2 border-b" @click="emoticon.selected = true" x-show="!emoticon.selected">
               <img x-bind:src="emoticon.image" class="inline h-4">
               <span x-text="emoticon.name"></span>
             </div>
@@ -29,9 +29,9 @@
       </div>
       <div class="w-1/2 p-2">
         <input class="border my-2 w-full" placeholder="Search">
-        <div class="border h-64 overflow-y-scroll" x-data="{emoticons_list:emoticons_list}">
+        <div class="border h-64 overflow-y-scroll">
           <template x-for="emoticon in emoticons_list" :key="emoticon.name">
-            <div class="p-2 border-b">
+            <div class="p-2 border-b" @click="emoticon.selected = false" x-show="emoticon.selected">
               <img x-bind:src="emoticon.image" class="inline h-4">
               <span x-text="emoticon.name"></span>
             </div>
@@ -59,7 +59,8 @@
   var emoticons_list = [
     {
         "name" : 'smile',
-        'image' : 'https://az705183.vo.msecnd.net/onlinesupportmedia/onlinesupport/media/skype/fa100xx/smile_40x40.gif'
+        'image' : 'https://az705183.vo.msecnd.net/onlinesupportmedia/onlinesupport/media/skype/fa100xx/smile_40x40.gif',
+      "selected" : true
     },
     {
         "name" : 'sad',
