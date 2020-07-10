@@ -1,24 +1,53 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://unpkg.com/tailwindcss@0.3.0/dist/tailwind.min.css" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://unpkg.com/tailwindcss@1.2.0/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body class="h-screen overflow-hidden flex items-center justify-center" style="background: #edf2f7;">
-    <div class="w-full sm:w-1/2 md:w-1/3">
-  <h1 class="font-sans font-thin mb-4">Article title</h1>
+<body>
+<div class="container m-auto">
+  <div class="p-10">
+    <h1 class="font-sans font-thin mb-4 text-xl font-bold">Custom Reaction emoticons list</h1>
 
-  <p class="text-grey mb-3">Written by Walter Bishop on 25 May 2070. Posted in News</p>
+    <p class="text-grey mb-3">Command generator : make a skype command to change your reaction set
+      in the message reaction picker</p>
 
-  <h2 class="font-sans font-thin leading-normal mb-4">The observers are coming. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi.</h2>
+    <h2 class="font-sans font-bold leading-normal mb-4">
+      Step 1: Select your favourite emoticons</h2>
+    <div class="flex">
+      <div class="w-1/2 p-2">
+        <input class="border my-2 w-full" >
+        <div class="border h-64">
+            <div>
+              <img alt="Smile emoticon" src="https://az705183.vo.msecnd.net/onlinesupportmedia/onlinesupport/media/skype/fa100xx/smile_40x40.gif" class="inline">
+              Smile
+            </div>
+        </div>
+      </div>
+      <div class="w-1/2 p-2">
+        <input class="border my-2 w-full" >
+        <div class="border h-64">
+            <div>
+              <img alt="Smile emoticon" src="https://az705183.vo.msecnd.net/onlinesupportmedia/onlinesupport/media/skype/fa100xx/smile_40x40.gif" class="inline">
+              Smile
+            </div>
+        </div>
+      </div>
+    </div>
+    <h2 class="font-sans font-bold leading-normal mb-4">
+      Step 2: Copy below command</h2>
+    <h2 class="font-sans font-bold leading-normal mb-4">
+      Step 3: Paste above comamd to your skype message input and click send button/enter</h2>
 
-  <p class="text-grey-darkest mb-6 leading-tight">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-  <div>
-    <a href="#" class="text-black mr-2">READ MORE</a>
-    <a href="#" class="text-black">5 COMMENTS</a>
+    <p class="text-grey-darkest mb-6 leading-tight italic">Note: If you want to reset reaction set to default, use skype command “/resetreactions”</p>
+
+    <div>
+      <a href="#" class="text-black mr-2">READ MORE</a>
+      <a href="#" class="text-black">5 COMMENTS</a>
+    </div>
   </div>
 
 </div>
