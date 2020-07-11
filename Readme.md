@@ -1,5 +1,7 @@
 # Custom Skype reactions set
 
+![Demo](after.png)
+
 Online https://vuthaihoc.github.io/custom-skype-reactions-set/
 
 This is my very first project with AlpineJs
