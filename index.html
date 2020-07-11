@@ -4,24 +4,42 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://unpkg.com/tailwindcss@1.2.0/dist/tailwind.min.css" rel="stylesheet">
+  <link href="tailwind.min.css" rel="stylesheet">
+  <title>Custom Skype reactions set</title>
 </head>
 <body>
 <div class="container m-auto" x-data="{emoticons_list:emoticons_list, search_left: '', search_right: ''}">
   <div class="p-10">
-    <h1 class="font-sans font-thin mb-4 text-xl font-bold">Custom Reaction emoticons list</h1>
+    <h1 class="font-sans font-thin mb-4 text-4xl font-bold uppercase">Custom Reaction emoticons list</h1>
+
+    <div class="flex my-20">
+      <div class="w-1/2 pr-2">
+        <p>BEFORE</p>
+        <img src="before.png"/>
+      </div>
+      <div class="w-1/2">
+        <p>AFTER</p>
+        <img src="after.png"/>
+      </div>
+    </div>
+
     <p class="text-grey mb-3">Command generator : make a skype command to change your reaction set
       in the message reaction picker</p>
 
     <h2 class="font-sans font-bold leading-normal my-4">
-      Step 1: Select your favourite emoticons</h2>
+      Step 1: Remove default set (optional)</h2>
+    <input class="p-3 overflow-x-scroll border w-full"
+           value="/removereactions cry cwl sarcastic surprised heart yes rock facepalm porgsurprised monkey star no bow gran dance party highfive poop"
+         onclick="this.select()" />
+    <h2 class="font-sans font-bold leading-normal my-4">
+      Step 2: Select your favourite emoticons</h2>
     <div class="flex">
       <div class="w-1/2 p-2">
-        <p>Available emoticons</p>
-        <input class="border my-2 w-full p-1" placeholder="Search" x-model="search_left">
+        <p>Available emoticons <em>(Click item to add)</em></p>
+        <input class="border my-2 w-full p-1" placeholder="Type to search your favourite emoticons" x-model="search_left">
         <div class="border h-64 overflow-y-scroll">
           <template x-for="emoticon in emoticons_list" :key="emoticon.name">
-            <div class="p-2 border-b" @click="emoticon.selected = true" x-show="!emoticon.selected && emoticon.name.match(search_left)">
+            <div class="p-2 border-b cursor-pointer" @click="emoticon.selected = true" x-show="!emoticon.selected && emoticon.des.match(search_left)">
               <img x-bind:src="emoticon.image" class="inline h-4">
               <span x-text="emoticon.name"></span>
             </div>
@@ -29,11 +47,11 @@
         </div>
       </div>
       <div class="w-1/2 p-2">
-        <p>Selected emoticons</p>
-        <input class="border my-2 w-full p-1" placeholder="Search" x-model="search_right">
+        <p>Selected emoticons <em>(Click item to remove)</em></p>
+        <input class="border my-2 w-full p-1" placeholder="Type top search" x-model="search_right">
         <div class="border h-64 overflow-y-scroll">
           <template x-for="emoticon in emoticons_list" :key="emoticon.name">
-            <div class="p-2 border-b" @click="emoticon.selected = false" x-show="emoticon.selected && emoticon.name.match(search_right)">
+            <div class="p-2 border-b cursor-pointer" @click="emoticon.selected = false" x-show="emoticon.selected && emoticon.des.match(search_right)">
               <img x-bind:src="emoticon.image" class="inline h-4">
               <span x-text="emoticon.name"></span>
             </div>
@@ -42,26 +60,24 @@
       </div>
     </div>
     <h2 class="font-sans font-bold leading-normal my-4">
-      Step 2: Copy below command</h2>
-    <input x-bind:value="'/addreactions ' + joinObj(emoticons_list, 'name')"
+      Step 3: Copy below command</h2>
+    <input x-bind:value="'/addreactions ' + joinObj(emoticons_list, 'code')"
            class="p-3 overflow-x-scroll border w-full"
            onclick="this.select()"
            value="/addreactions "/>
     <h2 class="font-sans font-bold leading-normal my-4">
-      Step 3: Paste above comamd to your skype message input and click send button/enter</h2>
+      Step 4: Then paste above comamd to your skype message input and click send button/enter</h2>
 
 
-    <p class="text-grey-darkest mb-6 leading-tight italic">Note: If you want to reset reaction set to default, use skype
+    <p class="text-grey-darkest mb-6 leading-tight italic text-red-500">Note 1: If you want to reset reaction set to default, use skype
       command “/resetreactions”</p>
+    <p class="text-grey-darkest mb-6 leading-tight italic text-red-500">Note 2: Some emoticons are not available for using as reaction</p>
 
-    <div>
-      <a href="#" class="text-black mr-2">READ MORE</a>
-      <a href="#" class="text-black">5 COMMENTS</a>
-    </div>
   </div>
 
 </div>
-<script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js" defer></script>
+<script src="alpine.min.js" defer></script>
+<script src="emoticons_list.js" ></script>
 <script>
 
   function joinObj(a, attr) {
@@ -76,49 +92,6 @@
     return out.join(" ");
   }
 
-  var emoticons_list = [
-    {
-      "name": 'smile',
-      'image': 'https://az705183.vo.msecnd.net/onlinesupportmedia/onlinesupport/media/skype/fa100xx/smile_40x40.gif',
-      "selected": true
-    },
-    {
-      "name": 'sad',
-      'image': 'https://az705183.vo.msecnd.net/onlinesupportmedia/onlinesupport/media/skype/fa100xx/sad_40x40_1.gif'
-    },
-    {
-      "name": 'cool',
-      'image': 'https://az705183.vo.msecnd.net/onlinesupportmedia/onlinesupport/media/skype/fa100xx/cool_40x40.gif'
-    },
-    {
-      "name": 'stareyes',
-      'image': 'https://az705183.vo.msecnd.net/onlinesupportmedia/onlinesupport/media/skype/fa300xx/stareyes_40x40.gif'
-    },
-    {
-      "name": 'unamused',
-      'image': 'https://az705183.vo.msecnd.net/onlinesupportmedia/onlinesupport/media/skype/fa300xx/unamused_40x40.gif'
-    },
-    {
-      "name": 'xd',
-      'image': 'https://az705183.vo.msecnd.net/onlinesupportmedia/onlinesupport/media/skype/fa300xx/xd_40x40.gif'
-    },
-    {
-      "name": 'happyeyes',
-      'image': 'https://az705183.vo.msecnd.net/onlinesupportmedia/onlinesupport/media/skype/fa300xx/happyeyes_40x40.gif'
-    },
-    {
-      "name": 'weary',
-      'image': 'https://az705183.vo.msecnd.net/onlinesupportmedia/onlinesupport/media/skype/fa300xx/weary_40x40.gif'
-    },
-    {
-      "name": 'flushed',
-      'image': 'https://az705183.vo.msecnd.net/onlinesupportmedia/onlinesupport/media/skype/fa300xx/flushed_40x40.gif'
-    },
-    {
-      "name": 'smileeyes',
-      'image': 'https://az705183.vo.msecnd.net/onlinesupportmedia/onlinesupport/media/skype/fa300xx/smileeyes_40x40.gif'
-    }
-  ];
 </script>
 </body>
 </html>
